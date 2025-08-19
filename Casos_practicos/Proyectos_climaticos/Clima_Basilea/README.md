@@ -12,3 +12,5 @@ Este proyecto analiza los datos de temperatura en Basilea.
 - `Basilea_clima.csv`: dataset original.
 - `analisis_basilea.ipynb`: notebook con el análisis paso a paso.
 - `analisis_basilea.py`: versión del código en script de Python.
+
+
