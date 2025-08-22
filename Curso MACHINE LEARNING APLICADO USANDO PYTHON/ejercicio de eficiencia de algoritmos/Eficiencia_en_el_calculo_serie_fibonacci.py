@@ -39,15 +39,13 @@ def calculo_fibonacci(n):
     
 
 def Calculo_n_fibonacci_Binet(n):
-
-    r5 = math.sqrt(5)
     
     fi = (1 + math.sqrt(5)) / 2
     print(f'Valor de fi (Proporcion aurea) = {fi}')
 
     fn = ((((1 + math.sqrt(5)) / 2) ** n) - (((1 - math.sqrt(5)) / 2) ** n)) / math.sqrt(5)
 
-    return fn
+    return round(fn)
 
 n = int(input("Introduce la posicion de la serie de Fibonacci que quieres calcular: "))
 
@@ -61,7 +59,7 @@ print('\n')
 
 ''' callculo Usando la formula de Binet'''
 t_inicial_con_binet = datetime.now()
-print(f'el valor del {n}º elemento de la serie de fibonacci calculado con la formula de Binet es : {Calculo_n_fibonacci_Binet(n):.2f}')
+print(f'el valor del {n}º elemento de la serie de fibonacci calculado con la formula de Binet es : {Calculo_n_fibonacci_Binet(n)}')#:.2f} solo dos decimales
 t_final_con_binet = datetime.now()
 print(f'El tiempo empleado en el calculo usando la formual de Binet es de: {t_final_con_binet-t_inicial_con_binet}')
 print('formula de Binet usada para el calculo: ((((1 + math.sqrt(5)) / 2) ** n) - (((1 - math.sqrt(5)) / 2) ** n)) / math.sqrt(5)')
