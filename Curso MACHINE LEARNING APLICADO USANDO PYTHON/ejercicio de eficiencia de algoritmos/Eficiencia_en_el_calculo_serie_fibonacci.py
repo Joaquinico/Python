@@ -47,6 +47,22 @@ def Calculo_n_fibonacci_Binet(n):
 
     return round(fn)
 
+
+def calculo_fibonacci_sin_recursividad(n):
+        if n<2:
+            return n
+        else:
+            prim_elem=0
+            seg_elem=1
+            contador=1
+            suma=0
+        while(contador<=n):
+            contador+=1
+            prim_elem=seg_elem
+            seg_elem=suma
+            suma=prim_elem+seg_elem
+        return suma
+
 n = int(input("Introduce la posicion de la serie de Fibonacci que quieres calcular: "))
 
 ''' Calculo usando funcion recursiva con al formula del calculo de fn de Fibonacci'''
@@ -63,3 +79,10 @@ print(f'el valor del {n}º elemento de la serie de fibonacci calculado con la fo
 t_final_con_binet = datetime.now()
 print(f'El tiempo empleado en el calculo usando la formual de Binet es de: {t_final_con_binet-t_inicial_con_binet}')
 print('formula de Binet usada para el calculo: ((((1 + math.sqrt(5)) / 2) ** n) - (((1 - math.sqrt(5)) / 2) ** n)) / math.sqrt(5)')
+print('\n')
+
+''' calculo del enesimo elemento de fibonacci sin recursividad ni formula de Binet'''
+t_inicial_sin_recur_sin_Binet = datetime.now()
+print(f'el elemento {n} de la serie de Fibonacci es {calculo_fibonacci_sin_recursividad(n)}' )
+t_final_sin_recur_sin_Binet = datetime.now()
+print(f'El tiempo empleado en el calculo sin recursividad ni Binet es: {t_final_sin_recur_sin_Binet-t_inicial_sin_recur_sin_Binet}')
