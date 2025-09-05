@@ -1,0 +1,4 @@
+matplotlib==3.10.6
+pandas==2.3.2
+pydotplus==2.0.2
+scikit_learn==1.7.1
