@@ -10,6 +10,8 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.model_selection import train_test_split
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -27,7 +29,8 @@ plt.scatter(X,y)
 plt.xlabel("Horas de estudio")
 plt.ylabel("Rendimiento")
 
-lr = LinearRegression().fit(X,y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+lr = LinearRegression().fit(X_train,y_train)
 
 ajuste_de_X=np.arange(1,100,10)
 
@@ -43,11 +46,11 @@ plt.grid(True)
  
 curva = PolynomialFeatures(degree=4)
 
-X_curva = curva.fit_transform(X)
+X_curva = curva.fit_transform(X_train)
 
-pr0 =LinearRegression().fit(X_curva, y)
-
+pr0 =LinearRegression().fit(X_curva, y_train)
 y_curva=pr0.predict(curva.fit_transform(ajuste_de_X))
+
 
 plt.plot(ajuste_de_X,y_curva,label="Ajuste polinomico a 4",color='yellow')
 plt.legend()
@@ -55,9 +58,9 @@ plt.grid(True)
 
 
 #Evalucion de la precision del modelo LINEAL
-y_tr_pred = lr.predict(X)
-r2 = r2_score(y, y_tr_pred)
-mse = mean_squared_error(y, y_tr_pred)
+y_tr_pred = lr.predict(X_test)
+r2 = r2_score(y_test, y_tr_pred)
+mse = mean_squared_error(y_test, y_tr_pred)
 
 print("\033[1;31m"+f"Coeficiente de determinación modelo lineal: {r2:.2f}" + "\033[0;m")
 print("\033[1;31m"+f"Error cuadrático medio modelo lineal: {mse:.2f}"+ "\033[0;m")
@@ -65,9 +68,10 @@ print('\n')
 
 
 #Evalucion de la precision del modelo Polinomico
-y_tra_pred = pr0.predict(X_curva)
-r2_poly = r2_score(y, y_tra_pred)
-mse_poly = mean_squared_error(y, y_tra_pred)
+y_tra_pred = pr0.predict(curva.transform(X_test))
+
+r2_poly = r2_score(y_test, y_tra_pred)
+mse_poly = mean_squared_error(y_test, y_tra_pred)
 
 print("\033[1;33m"+f"Coeficiente de determinación polinomico a 4: {r2_poly:.2f}"+"\033[0;m")
 print("\033[1;33m"+f"Error cuadrático medio modelo polinomico a 4: {mse_poly:.2f}"+"\033[0;m")
